@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lht.dao.BsOrderDao">
+
+    <resultMap type="cn.lht.entity.BsOrder" id="BsOrderMap">
+        <result property="bsOrderid" column="bs_orderId" jdbcType="INTEGER"/>
+        <result property="bsOrderno" column="bs_orderNo" jdbcType="VARCHAR"/>
+        <result property="bsUserid" column="bs_userId" jdbcType="INTEGER"/>
+        <result property="bsOrderstatus" column="bs_orderStatus" jdbcType="INTEGER"/>
+        <result property="bsBooksmoney" column="bs_booksMoney" jdbcType="OTHER"/>
+        <result property="bsLivertype" column="bs_liverType" jdbcType="INTEGER"/>
+        <result property="bsDelivermoney" column="bs_deliverMoney" jdbcType="OTHER"/>
+        <result property="bsPaytype" column="bs_payType" jdbcType="INTEGER"/>
+        <result property="bsPayfrom" column="bs_payFrom" jdbcType="INTEGER"/>
+        <result property="bsIspay" column="bs_isPay" jdbcType="INTEGER"/>
+        <result property="bsUsername" column="bs_userName" jdbcType="VARCHAR"/>
+        <result property="bsUseraddress" column="bs_userAddress" jdbcType="VARCHAR"/>
+        <result property="bsUserphone" column="bs_userPhone" jdbcType="VARCHAR"/>
+        <result property="bsIsinvoice" column="bs_isInvoice" jdbcType="INTEGER"/>
+        <result property="bsInvoiceclient" column="bs_invoiceClient" jdbcType="VARCHAR"/>
+        <result property="bsOrderremarks" column="bs_orderRemarks" jdbcType="VARCHAR"/>
+        <result property="bsNeedpay" column="bs_needPay" jdbcType="OTHER"/>
+        <result property="bsIsrefund" column="bs_isReFund" jdbcType="INTEGER"/>
+        <result property="bsCancelreasonid" column="bs_cancelReasonId" jdbcType="INTEGER"/>
+        <result property="bsRejectreasonid" column="bs_rejectReasonId" jdbcType="INTEGER"/>
+        <result property="bsIsclosed" column="bs_isClosed" jdbcType="INTEGER"/>
+        <result property="bsOrderrunique" column="bs_orderRunique" jdbcType="VARCHAR"/>
+        <result property="bsReceivetime" column="bs_receiveTime" jdbcType="OTHER"/>
+        <result property="bsDeliverytime" column="bs_deliveryTime" jdbcType="OTHER"/>
+        <result property="bsExpressid" column="bs_expressId" jdbcType="INTEGER"/>
+        <result property="bsPressno" column="bs_pressNo" jdbcType="VARCHAR"/>
+        <result property="bsDataflag" column="bs_dataFlag" jdbcType="OTHER"/>
+        <result property="bsCreatetime" column="bs_createTime" jdbcType="OTHER"/>
+        <result property="bsAreaid" column="bs_areaId" jdbcType="INTEGER"/>
+        <result property="bsAreaidpath" column="bs_areaIdPath" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BsOrderMap">
+        select
+          bs_orderId, bs_orderNo, bs_userId, bs_orderStatus, bs_booksMoney, bs_liverType, bs_deliverMoney, bs_payType, bs_payFrom, bs_isPay, bs_userName, bs_userAddress, bs_userPhone, bs_isInvoice, bs_invoiceClient, bs_orderRemarks, bs_needPay, bs_isReFund, bs_cancelReasonId, bs_rejectReasonId, bs_isClosed, bs_orderRunique, bs_receiveTime, bs_deliveryTime, bs_expressId, bs_pressNo, bs_dataFlag, bs_createTime, bs_areaId, bs_areaIdPath
+        from books_shop.bs_order
+        where bs_orderId = #{bsOrderid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BsOrderMap">
+        select
+          bs_orderId, bs_orderNo, bs_userId, bs_orderStatus, bs_booksMoney, bs_liverType, bs_deliverMoney, bs_payType, bs_payFrom, bs_isPay, bs_userName, bs_userAddress, bs_userPhone, bs_isInvoice, bs_invoiceClient, bs_orderRemarks, bs_needPay, bs_isReFund, bs_cancelReasonId, bs_rejectReasonId, bs_isClosed, bs_orderRunique, bs_receiveTime, bs_deliveryTime, bs_expressId, bs_pressNo, bs_dataFlag, bs_createTime, bs_areaId, bs_areaIdPath
+        from books_shop.bs_order
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BsOrderMap">
+        select
+          bs_orderId, bs_orderNo, bs_userId, bs_orderStatus, bs_booksMoney, bs_liverType, bs_deliverMoney, bs_payType, bs_payFrom, bs_isPay, bs_userName, bs_userAddress, bs_userPhone, bs_isInvoice, bs_invoiceClient, bs_orderRemarks, bs_needPay, bs_isReFund, bs_cancelReasonId, bs_rejectReasonId, bs_isClosed, bs_orderRunique, bs_receiveTime, bs_deliveryTime, bs_expressId, bs_pressNo, bs_dataFlag, bs_createTime, bs_areaId, bs_areaIdPath
+        from books_shop.bs_order
+        <where>
+            <if test="bsOrderid != null">
+                and bs_orderId = #{bsOrderid}
+            </if>
+            <if test="bsOrderno != null and bsOrderno != ''">
+                and bs_orderNo = #{bsOrderno}
+            </if>
+            <if test="bsUserid != null">
+                and bs_userId = #{bsUserid}
+            </if>
+            <if test="bsOrderstatus != null">
+                and bs_orderStatus = #{bsOrderstatus}
+            </if>
+            <if test="bsBooksmoney != null">
+                and bs_booksMoney = #{bsBooksmoney}
+            </if>
+            <if test="bsLivertype != null">
+                and bs_liverType = #{bsLivertype}
+            </if>
+            <if test="bsDelivermoney != null">
+                and bs_deliverMoney = #{bsDelivermoney}
+            </if>
+            <if test="bsPaytype != null">
+                and bs_payType = #{bsPaytype}
+            </if>
+            <if test="bsPayfrom != null">
+                and bs_payFrom = #{bsPayfrom}
+            </if>
+            <if test="bsIspay != null">
+                and bs_isPay = #{bsIspay}
+            </if>
+            <if test="bsUsername != null and bsUsername != ''">
+                and bs_userName = #{bsUsername}
+            </if>
+            <if test="bsUseraddress != null and bsUseraddress != ''">
+                and bs_userAddress = #{bsUseraddress}
+            </if>
+            <if test="bsUserphone != null and bsUserphone != ''">
+                and bs_userPhone = #{bsUserphone}
+            </if>
+            <if test="bsIsinvoice != null">
+                and bs_isInvoice = #{bsIsinvoice}
+            </if>
+            <if test="bsInvoiceclient != null and bsInvoiceclient != ''">
+                and bs_invoiceClient = #{bsInvoiceclient}
+            </if>
+            <if test="bsOrderremarks != null and bsOrderremarks != ''">
+                and bs_orderRemarks = #{bsOrderremarks}
+            </if>
+            <if test="bsNeedpay != null">
+                and bs_needPay = #{bsNeedpay}
+            </if>
+            <if test="bsIsrefund != null">
+                and bs_isReFund = #{bsIsrefund}
+            </if>
+            <if test="bsCancelreasonid != null">
+                and bs_cancelReasonId = #{bsCancelreasonid}
+            </if>
+            <if test="bsRejectreasonid != null">
+                and bs_rejectReasonId = #{bsRejectreasonid}
+            </if>
+            <if test="bsIsclosed != null">
+                and bs_isClosed = #{bsIsclosed}
+            </if>
+            <if test="bsOrderrunique != null and bsOrderrunique != ''">
+                and bs_orderRunique = #{bsOrderrunique}
+            </if>
+            <if test="bsReceivetime != null">
+                and bs_receiveTime = #{bsReceivetime}
+            </if>
+            <if test="bsDeliverytime != null">
+                and bs_deliveryTime = #{bsDeliverytime}
+            </if>
+            <if test="bsExpressid != null">
+                and bs_expressId = #{bsExpressid}
+            </if>
+            <if test="bsPressno != null and bsPressno != ''">
+                and bs_pressNo = #{bsPressno}
+            </if>
+            <if test="bsDataflag != null">
+                and bs_dataFlag = #{bsDataflag}
+            </if>
+            <if test="bsCreatetime != null">
+                and bs_createTime = #{bsCreatetime}
+            </if>
+            <if test="bsAreaid != null">
+                and bs_areaId = #{bsAreaid}
+            </if>
+            <if test="bsAreaidpath != null and bsAreaidpath != ''">
+                and bs_areaIdPath = #{bsAreaidpath}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="bsOrderid" useGeneratedKeys="true">
+        insert into books_shop.bs_order(bs_orderNo, bs_userId, bs_orderStatus, bs_booksMoney, bs_liverType, bs_deliverMoney, bs_payType, bs_payFrom, bs_isPay, bs_userName, bs_userAddress, bs_userPhone, bs_isInvoice, bs_invoiceClient, bs_orderRemarks, bs_needPay, bs_isReFund, bs_cancelReasonId, bs_rejectReasonId, bs_isClosed, bs_orderRunique, bs_receiveTime, bs_deliveryTime, bs_expressId, bs_pressNo, bs_dataFlag, bs_createTime, bs_areaId, bs_areaIdPath)
+        values (#{bsOrderno}, #{bsUserid}, #{bsOrderstatus}, #{bsBooksmoney}, #{bsLivertype}, #{bsDelivermoney}, #{bsPaytype}, #{bsPayfrom}, #{bsIspay}, #{bsUsername}, #{bsUseraddress}, #{bsUserphone}, #{bsIsinvoice}, #{bsInvoiceclient}, #{bsOrderremarks}, #{bsNeedpay}, #{bsIsrefund}, #{bsCancelreasonid}, #{bsRejectreasonid}, #{bsIsclosed}, #{bsOrderrunique}, #{bsReceivetime}, #{bsDeliverytime}, #{bsExpressid}, #{bsPressno}, #{bsDataflag}, #{bsCreatetime}, #{bsAreaid}, #{bsAreaidpath})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update books_shop.bs_order
+        <set>
+            <if test="bsOrderno != null and bsOrderno != ''">
+                bs_orderNo = #{bsOrderno},
+            </if>
+            <if test="bsUserid != null">
+                bs_userId = #{bsUserid},
+            </if>
+            <if test="bsOrderstatus != null">
+                bs_orderStatus = #{bsOrderstatus},
+            </if>
+            <if test="bsBooksmoney != null">
+                bs_booksMoney = #{bsBooksmoney},
+            </if>
+            <if test="bsLivertype != null">
+                bs_liverType = #{bsLivertype},
+            </if>
+            <if test="bsDelivermoney != null">
+                bs_deliverMoney = #{bsDelivermoney},
+            </if>
+            <if test="bsPaytype != null">
+                bs_payType = #{bsPaytype},
+            </if>
+            <if test="bsPayfrom != null">
+                bs_payFrom = #{bsPayfrom},
+            </if>
+            <if test="bsIspay != null">
+                bs_isPay = #{bsIspay},
+            </if>
+            <if test="bsUsername != null and bsUsername != ''">
+                bs_userName = #{bsUsername},
+            </if>
+            <if test="bsUseraddress != null and bsUseraddress != ''">
+                bs_userAddress = #{bsUseraddress},
+            </if>
+            <if test="bsUserphone != null and bsUserphone != ''">
+                bs_userPhone = #{bsUserphone},
+            </if>
+            <if test="bsIsinvoice != null">
+                bs_isInvoice = #{bsIsinvoice},
+            </if>
+            <if test="bsInvoiceclient != null and bsInvoiceclient != ''">
+                bs_invoiceClient = #{bsInvoiceclient},
+            </if>
+            <if test="bsOrderremarks != null and bsOrderremarks != ''">
+                bs_orderRemarks = #{bsOrderremarks},
+            </if>
+            <if test="bsNeedpay != null">
+                bs_needPay = #{bsNeedpay},
+            </if>
+            <if test="bsIsrefund != null">
+                bs_isReFund = #{bsIsrefund},
+            </if>
+            <if test="bsCancelreasonid != null">
+                bs_cancelReasonId = #{bsCancelreasonid},
+            </if>
+            <if test="bsRejectreasonid != null">
+                bs_rejectReasonId = #{bsRejectreasonid},
+            </if>
+            <if test="bsIsclosed != null">
+                bs_isClosed = #{bsIsclosed},
+            </if>
+            <if test="bsOrderrunique != null and bsOrderrunique != ''">
+                bs_orderRunique = #{bsOrderrunique},
+            </if>
+            <if test="bsReceivetime != null">
+                bs_receiveTime = #{bsReceivetime},
+            </if>
+            <if test="bsDeliverytime != null">
+                bs_deliveryTime = #{bsDeliverytime},
+            </if>
+            <if test="bsExpressid != null">
+                bs_expressId = #{bsExpressid},
+            </if>
+            <if test="bsPressno != null and bsPressno != ''">
+                bs_pressNo = #{bsPressno},
+            </if>
+            <if test="bsDataflag != null">
+                bs_dataFlag = #{bsDataflag},
+            </if>
+            <if test="bsCreatetime != null">
+                bs_createTime = #{bsCreatetime},
+            </if>
+            <if test="bsAreaid != null">
+                bs_areaId = #{bsAreaid},
+            </if>
+            <if test="bsAreaidpath != null and bsAreaidpath != ''">
+                bs_areaIdPath = #{bsAreaidpath},
+            </if>
+        </set>
+        where bs_orderId = #{bsOrderid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from books_shop.bs_order where bs_orderId = #{bsOrderid}
+    </delete>
+
+</mapper>

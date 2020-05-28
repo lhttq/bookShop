@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lht.dao.BsAddressDao">
+
+    <resultMap type="cn.lht.entity.BsAddress" id="BsAddressMap">
+        <result property="bsAddressid" column="bs_addressId" jdbcType="INTEGER"/>
+        <result property="bsUserid" column="bs_userId" jdbcType="INTEGER"/>
+        <result property="bsUsername" column="bs_userName" jdbcType="VARCHAR"/>
+        <result property="bsUserphone" column="bs_userPhone" jdbcType="VARCHAR"/>
+        <result property="bsAreaidpath" column="bs_areaIdPath" jdbcType="VARCHAR"/>
+        <result property="bsIsdefault" column="bs_isDefault" jdbcType="INTEGER"/>
+        <result property="bsCreatetime" column="bs_createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BsAddressMap">
+        select
+          bs_addressId, bs_userId, bs_userName, bs_userPhone, bs_areaIdPath, bs_isDefault, bs_createTime
+        from books_shop.bs_address
+        where bs_addressId = #{bsAddressid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BsAddressMap">
+        select
+          bs_addressId, bs_userId, bs_userName, bs_userPhone, bs_areaIdPath, bs_isDefault, bs_createTime
+        from books_shop.bs_address
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BsAddressMap">
+        select
+          bs_addressId, bs_userId, bs_userName, bs_userPhone, bs_areaIdPath, bs_isDefault, bs_createTime
+        from books_shop.bs_address
+        <where>
+            <if test="bsAddressid != null">
+                and bs_addressId = #{bsAddressid}
+            </if>
+            <if test="bsUserid != null">
+                and bs_userId = #{bsUserid}
+            </if>
+            <if test="bsUsername != null and bsUsername != ''">
+                and bs_userName = #{bsUsername}
+            </if>
+            <if test="bsUserphone != null and bsUserphone != ''">
+                and bs_userPhone = #{bsUserphone}
+            </if>
+            <if test="bsAreaidpath != null and bsAreaidpath != ''">
+                and bs_areaIdPath = #{bsAreaidpath}
+            </if>
+            <if test="bsIsdefault != null">
+                and bs_isDefault = #{bsIsdefault}
+            </if>
+            <if test="bsCreatetime != null">
+                and bs_createTime = #{bsCreatetime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="bsAddressid" useGeneratedKeys="true">
+        insert into books_shop.bs_address(bs_userId, bs_userName, bs_userPhone, bs_areaIdPath, bs_isDefault, bs_createTime)
+        values (#{bsUserid}, #{bsUsername}, #{bsUserphone}, #{bsAreaidpath}, #{bsIsdefault}, #{bsCreatetime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update books_shop.bs_address
+        <set>
+            <if test="bsUserid != null">
+                bs_userId = #{bsUserid},
+            </if>
+            <if test="bsUsername != null and bsUsername != ''">
+                bs_userName = #{bsUsername},
+            </if>
+            <if test="bsUserphone != null and bsUserphone != ''">
+                bs_userPhone = #{bsUserphone},
+            </if>
+            <if test="bsAreaidpath != null and bsAreaidpath != ''">
+                bs_areaIdPath = #{bsAreaidpath},
+            </if>
+            <if test="bsIsdefault != null">
+                bs_isDefault = #{bsIsdefault},
+            </if>
+            <if test="bsCreatetime != null">
+                bs_createTime = #{bsCreatetime},
+            </if>
+        </set>
+        where bs_addressId = #{bsAddressid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from books_shop.bs_address where bs_addressId = #{bsAddressid}
+    </delete>
+
+</mapper>

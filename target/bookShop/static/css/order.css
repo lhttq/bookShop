@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100%;
+    background: rgb(246, 248, 251);
+    position: absolute;
+}
+.order-address{
+    position: relative;
+    margin: 10px auto;
+    box-sizing: border-box;
+    padding: 0 24px 30px;
+    height: 246px;
+    width: 1360px;
+    background: white;
+}
+.order-address>ul{
+    margin-top: 16px;
+    font-family:"PingFang SC", 微软雅黑, "Microsoft Yahei", Arial, Helvetica, sans-serif, 宋体;
+    font-size:14px;
+    font-weight:400;
+    text-size-adjust:100%;
+    zoom:1;
+}
+.order-address ul li{
+    float: left;
+    width: 288px;
+    height: 148px;
+    padding: 16px;
+    border: 1px solid rgb(239, 239, 239);
+    list-style: none;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+}
+.order-address>ul>li>i{
+    font-size: 60px;
+    float: left;
+    position: relative;
+    padding:16px;
+    margin:30px auto;
+    margin-left: 90px;
+    transition: border-color .8s
+}
+.order-address .order-address-title{
+    box-sizing:border-box;
+    color:rgb(0, 0, 0);
+    display:block;
+    font-family:"PingFang SC", 微软雅黑, "Microsoft Yahei", Arial, Helvetica, sans-serif, 宋体;
+    font-size:18px;
+    font-weight:500;
+    line-height:normal;
+    padding-top:32px;
+    text-size-adjust:100%;
+}
+.order-address ul li:hover{
+    border: 1px solid rgb(0, 195, 245);
+}
+.mzcontainer order-product{
+    line-height: normal;
+    font-size: 14px;
+    width: 1240px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 24px 30px;
+    background-color: #FFF;
+}
+.order-product-title{
+    line-height: normal;
+    box-sizing: border-box;
+    font-size: 18px;
+    color: #262626;
+    padding: 25px 0 16px;
+    font-weight: 500;
+}
+.order-product-list{
+    line-height: normal;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.info{
+    line-height: normal;
+    list-style: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-size: 12px;
+    padding-top: 16px;
+    color: #262626;
+    height: 45px;
+    border-bottom: 1px solid #EFEFEF;
+    font-weight: bolder;
+}
+.address{
+    line-height: normal;
+    list-style: none;
+    font-weight: 400;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding-top: 10px;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-size: 12px;
+    max-height: 70px;
+    overflow: hidden;
+    color: #595959;
+}
+.order-cart{
+    line-height: normal;
+    font-size: 14px;
+    width: 1360px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 24px 30px;
+    background-color: #FFF;
+}
+.order-product-title{
+    line-height: normal;
+    margin: 16px;
+}
+.image{
+    float: left;
+}
+.bookName{
+    margin: 5px;
+    font-size: 1.5rem;
+}
+input{
+    outline:none;
+}
+.order-total{
+    line-height: normal;
+    font-size: 14px;
+    width: 1360px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 24px 30px;
+    background-color: #FFF;
+}
+#submit{
+    margin: 5px;
+    float: right;
+}

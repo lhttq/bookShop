@@ -1,0 +1,511 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+img{border:none}
+a{
+    text-decoration: none;
+}
+ul,ol{
+    list-style: none;
+}
+i,em,strong,b,u{
+    font-style: normal;
+}
+button,input,textarea{
+    outline: none;
+    border: none;
+}
+table{
+    border-collapse: collapse;
+}
+.clearfix::after,.clearfix::before{
+    content: "";
+    display: table;
+    clear: both;
+}
+html,body{
+    width: 100%;
+    min-width: 77rem;/*1232px*/
+    max-width: 140rem;/*2240px*/
+    margin: 0 auto;
+}
+body{
+    font-family: Helvetica;
+    font-size: 16px;
+    background-color: #F4F6FA;
+    font-weight: 400;
+}
+
+/*顶部区域*/
+div.header{
+    background-color: #fff;
+    filter: drop-shadow(0px 3px 3px #eee);
+}
+div.header>div.header-center{
+    width: 77rem;
+    height: 5rem;
+    margin: 0 auto;
+}
+
+/*购物车容器*/
+div.mzContainer{
+    margin-bottom: 2.5rem;
+}
+
+div.check-container{
+    width: 77rem;
+    margin: 0.6rem auto;
+}
+
+div.shop-cart-nav table{
+    width: 77rem;
+    height: 3rem;
+}
+div.shop-cart-nav table tr{
+    border-bottom: 0.09rem solid #eee;
+    background-color: #fff;
+}
+
+div.shop-cart-nav table tr td:not(:first-of-type){
+    color: #ccc;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/*购物车头部导航*/
+div.shop-cart-nav table tr td.check-area{
+    width: 33rem;
+}
+div.shop-cart-nav table tr td.singal-price{
+    width: 11rem;
+}
+div.shop-cart-nav table tr td.volumes{
+    width: 12rem;
+}
+div.shop-cart-nav table tr td.small-total{
+    width: 12rem;
+}
+div.shop-cart-nav table tr td.edit-area{
+    width: 11rem;
+    cursor: pointer;
+
+}
+
+td.edit-area>span{
+    color: #00c3f5;
+}
+
+
+/*checkbox区域*/
+a.check-label{
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+a.check-label i.checkbox{
+    position: relative;
+    display: inline-block;
+    width: 1.3rem;
+    height: 1.3rem;
+    border: 1px solid #bbb;
+    background-color: #fff;
+    vertical-align: middle;
+}
+a.check-label.checked i.checkbox{
+    background-color: #00c3f5;
+}
+
+
+a.check-label i.checkbox>span.check-mark{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: .8rem;
+    height: .4rem;
+    border-left: 0.15rem solid #fff;
+    border-bottom: 0.15rem solid #fff;
+    transform: translate(-50%,-70%) rotate(-45deg);
+}
+
+a.check-label em.check-name{
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+
+
+ul.goods-ul>li.goods-list>table{
+    width: 100%;
+}
+
+ul.goods-ul>li.goods-list:not(:first-of-type){
+    margin-top: 0.5rem;
+}
+
+/*商品种类头部*/
+table.goods-header{
+    height: 3rem;
+}
+
+table.goods-header tr{
+    border-bottom: 0.09rem solid #eee;
+    background-color: #FAFAFC;
+}
+
+/*商品内容*/
+table.goods-body tr{ 
+    height: 9rem;
+    background-color: #fff;
+}
+table.goods-body tr:not(:first-of-type){ 
+    border-top: 0.08rem dashed #ddd;
+}
+table.goods-body tr td:not(:first-of-type){ 
+    text-align: center;
+}
+
+
+table.goods-body tr td.goods-col-select{
+
+    width: 33rem;
+}
+a.goods-img{
+    display: inline-block;
+    width: 7rem;
+    height: 7rem;
+    margin-left: 1rem;
+    vertical-align: middle;
+}
+a.goods-img>img{
+    width: 100%;
+    height: 100%;
+}
+
+a.goods-info{
+    display: inline-block;
+    margin-left: 1rem;
+    vertical-align: middle;
+}
+a.goods-info h4.goods-info-title{
+    padding-bottom:.2rem;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+a.goods-info p.goods-info-tips{
+    font-size: .9rem;
+    color: #777;
+}
+
+
+table.goods-body tr td.goods-col-price{
+
+    width: 11rem;
+    font-size: 1.1rem;
+    color: #556;
+
+}
+
+
+table.goods-body tr td.goods-col-volumes{
+
+    width: 12rem;
+}
+td.goods-col-volumes div.num-ctrl-area{
+    display: inline-block;
+    position: relative;
+}
+
+td.goods-col-volumes div.num-ctrl-area button{
+    float: left;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 1px solid #eee; 
+    line-height: 1.6rem;
+    font-size: 1.2rem;
+    color: #525252;
+    background-color: #fff;
+    transition: color ease .2s;
+    cursor: pointer;   
+}
+
+td.goods-col-volumes div.num-ctrl-area button.forbid{
+    color: #999;
+    cursor: no-drop;
+}
+
+td.goods-col-volumes div.num-ctrl-area button:not(.forbid):hover{
+    color:#00c3f5;  
+}
+td.goods-col-volumes div.num-ctrl-area input{
+    float: left;
+    height: 1.6rem;
+    width: 3rem;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    text-align:center;
+}
+td.goods-col-volumes div.num-ctrl-area em.hint{
+    position: absolute;
+    top: calc(100% + .5rem);
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+table.goods-body tr td.goods-col-total{
+
+    width: 12rem;
+    font-size: 1.1rem;
+    color: #E02B41;
+
+}
+
+
+table.goods-body tr td.goods-col-ctrl{
+
+    position: relative;
+    width: 11rem;
+    font-size:.82rem;
+    color: #626262;
+    font-weight: 400;
+}
+table.goods-body tr td.goods-col-ctrl i.del-product{
+
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color cubic-bezier(0.175, 0.885, 0.32, 1.275) .5s;
+}
+table.goods-body tr td.goods-col-ctrl i.del-product>span{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.8rem;
+    height: 0.12rem;
+    background-color: #777;
+    transition: background-color cubic-bezier(0.175, 0.885, 0.32, 1.275) .5s;
+}
+
+
+table.goods-body tr td.goods-col-ctrl i.del-product>span.line-left{
+
+   transform: translate(-50%,-50%) rotate(45deg);
+
+}
+table.goods-body tr td.goods-col-ctrl i.del-product>span.line-right{
+
+   transform: translate(-50%,-50%) rotate(-45deg);
+
+}
+
+table.goods-body tr td.goods-col-ctrl i.del-product:hover{
+
+    background-color: #00c3f5;
+    
+}
+
+table.goods-body tr td.goods-col-ctrl i.del-product:hover>span{
+
+    background-color: #fff;
+
+}
+
+
+/*底部信息总览和结算区域*/
+div.shop-cart-footer.fixed{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 9;
+    filter: drop-shadow(0px -4px 4px #eee);
+}
+div.shop-cart-footer div.cart-foot{
+    
+    width: 77rem;
+    height: 4rem;
+    margin: auto;
+    background-color: #fff;
+    
+}
+
+div.shop-cart-footer div.cart-foot>div.cart-foot-left{
+    
+   float: left;
+    height: 100%;
+}
+div.shop-cart-footer div.cart-foot{
+    line-height: 4rem;
+}
+div.shop-cart-footer div.cart-foot>div.cart-foot-left em{
+    color: #888;    
+    font-size: 0.9rem;
+}
+div.shop-cart-footer div.cart-foot>div.cart-foot-left em.goods-delete{
+    
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: color ease .2s;
+}
+div.shop-cart-footer div.cart-foot>div.cart-foot-left em.goods-delete:hover{
+    color:#00c3f5;
+}
+div.shop-cart-footer div.cart-foot>div.cart-foot-left em.goods-num{   
+    margin-left: 1rem;
+}
+div.shop-cart-footer div.cart-foot>div.cart-foot-left em.goods-num>span.sum-selected{   
+    color: #00c3f5;
+    font-size: 1.1rem;
+    vertical-align: middle;
+}
+
+div.shop-cart-footer div.cart-foot>div.cart-foot-right{
+   float: right;
+   height: 100%;
+   padding-right: 2rem;
+}
+div.shop-cart-footer div.cart-foot>div.cart-foot-right em.total-bill{
+    color: #566;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+}
+div.shop-cart-footer div.cart-foot>div.cart-foot-right em.total-bill>span.bill-price{
+    font-size: 1.3rem;
+    font-weight:600;
+    color: #E02B41;
+    vertical-align: middle;
+}
+div.shop-cart-footer div.cart-foot>div.cart-foot-right a.order-btn{
+
+    display:inline-block;
+    height: 2rem;
+    width: 6rem;
+    text-align: center;
+    line-height: 2rem;
+    background-color: #F66567;
+    font-weight: 400;
+    font-size: .9rem;
+    color: #fff;
+    border-radius: 0.2rem;
+}
+div.shop-cart-footer div.cart-foot>div.cart-foot-right a.order-btn.banOrder{
+    background-color:#DBDBDB;
+    cursor: no-drop;
+}
+
+
+div.mz-foot{
+    margin:0 auto;
+    background-color: #fff;
+    height: 20rem;
+}
+
+
+div.float-box{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .2);
+    z-index: 100;
+}
+div.float-box div.confirm-box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 30rem;
+    border-radius: 0.3rem;
+    background-color: #feffff;
+}
+div.float-box div.confirm-box>h4.confirm-title{
+    position: relative;
+    padding: .8rem 0;
+    border-bottom: 0.05rem solid #dee;
+    text-align: center;
+    color: #444;
+    font-weight:600;
+    font-size: 1.2rem;
+}
+div.float-box div.confirm-box>h4.confirm-title>i.close-btn{
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.6rem;
+    height: 1.6rem;
+    cursor: pointer;
+    transition: opacity ease .2s;
+}
+div.float-box div.confirm-box>h4.confirm-title>i.close-btn:hover{
+    opacity: .6;
+}
+div.float-box div.confirm-box>h4.confirm-title>i.close-btn>span{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1.2rem;
+    height: 0.13rem;
+    background-color: #aaa;
+}
+div.float-box div.confirm-box>h4.confirm-title>i.close-btn>span.line-left{
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+div.float-box div.confirm-box>h4.confirm-title>i.close-btn>span.line-right{
+    transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+
+div.float-box div.confirm-box>div.confirm-content{
+    height: 8rem;
+    line-height: 8rem;
+    text-align: center;
+    color: #999;
+    font-size: 0.97rem;
+}
+div.float-box div.confirm-box>div.confirm-btn{
+    padding-bottom: 1.8rem;
+    text-align: center;
+}
+div.float-box div.confirm-box>div.confirm-btn>a{
+    display: inline-block;
+    width: 6.2rem;
+    height: 2.2rem;
+    line-height:2.2rem;
+    font-size: 0.88rem;
+    border-radius: 0.2rem;
+    transition: opacity ease .3s;
+}
+div.float-box div.confirm-box>div.confirm-btn>a:hover{
+    opacity: .7;
+}
+div.float-box div.confirm-box>div.confirm-btn>a:not(:first-of-type){
+    margin-left: 1rem;
+}
+div.float-box div.confirm-box>div.confirm-btn>a.delete{
+    background-color: #eee;
+    color: #777;
+}
+div.float-box div.confirm-box>div.confirm-btn>a.cancel{
+    background-color: #00c3f5;
+    color: #fff;
+}

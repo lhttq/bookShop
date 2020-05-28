@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 开启注解扫描-->
+    <context:component-scan base-package="cn.lht">
+        <!--        配置扫描的包-->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!--视图解析器-->
+    <bean id="internalResourceViewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+<!--配置拦截器-->
+   <mvc:interceptors>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsBooks/selectOne"/>
+           <bean class="cn.lht.Interceptor.InfoInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsPassword/InsertUser"/>
+           <bean class="cn.lht.Interceptor.RegisterInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsPassword/QueryByLoginName"/>
+           <bean class="cn.lht.Interceptor.LoginInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsCarts/InsertBsCart"/>
+           <bean class="cn.lht.Interceptor.AddCartsInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsCarts/SelectAllByUserId"/>
+           <bean class="cn.lht.Interceptor.CartsInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsCarts/SelectAllByIs"/>
+           <bean class="cn.lht.Interceptor.OrderInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsUsers/Select"/>
+           <bean class="cn.lht.Interceptor.UserInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsBooks/selectM"/>
+           <bean class="cn.lht.Interceptor.SearchInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsStubooks/selectPyUniversity"/>
+           <bean class="cn.lht.Interceptor.BsStubooksInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsPublishbooks/selectOne"/>
+           <bean class="cn.lht.Interceptor.BsPubilshbooksInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsPublishbooks/SelectByBsPublish"/>
+           <bean class="cn.lht.Interceptor.BsPublishBooksInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsStubooks/skip"/>
+           <bean class="cn.lht.Interceptor.InbsStubooksInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsStubooks/selectPyUniversity2"/>
+           <bean class="cn.lht.Interceptor.MyStuSellBookInterceptor"/>
+       </mvc:interceptor>
+       <mvc:interceptor>
+           <mvc:mapping path="/bsUsers/Skip"/>
+           <bean class="cn.lht.Interceptor.LoginSkipINterceptor"/>
+       </mvc:interceptor>
+         <mvc:interceptor>
+           <mvc:mapping path="/bsOrder/selectByUserId"/>
+           <bean class="cn.lht.Interceptor.MyOrderManageInterceptor"/>
+       </mvc:interceptor>
+   </mvc:interceptors>
+    <mvc:default-servlet-handler/>
+    <!--配置静态资源不过滤-->
+    <mvc:resources mapping="/static/**" location="/static/"/>
+    <!--开启SpringMVC框架注解支持-->
+    <mvc:annotation-driven/>
+</beans>

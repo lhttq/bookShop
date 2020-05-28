@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 100%;
+    width: 100%;
+    background: url("../img/6.png") 0 0 no-repeat;
+    min-width: 1000px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-position: center 0;
+}
+#body{
+    height: 100%;
+    width: 100%;
+    background:rgba(255,255,255,0.5);
+}
+.hander{
+    position: relative;
+    height: 7.5%;
+}
+.search{
+    position: absolute;
+    width: 500px;
+    top: 5px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+#nav{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+#my{
+    position: absolute;
+    right: 10px;
+    margin: auto;
+}
+.search input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.search input[type=text]:focus {
+    width: 50%;
+}
+.context{
+    position: relative;
+    text-align: center;
+    height: 85%;
+}
+.context>#lb {
+    left: 0;
+    right: 0;
+    width: 778px;
+    height: 440px;
+    margin: auto;
+}
+.cards{
+    position: relative;
+    height: 440px;
+    width: inherit;
+}
+.cards>ul>li{
+    list-style: none;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+}
+.card {
+    background: rgba(255,255,255,0.6);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 180px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.container {
+    padding: 2px 16px;
+}
+.footer{
+    height: 7.5%;
+}
+
+#lb_img>div>img{
+    height: 440px;
+    width: 778px;
+}
+
+
+

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lht.dao.BsOrderbooksDao">
+
+    <resultMap type="cn.lht.entity.BsOrderbooks" id="BsOrderbooksMap">
+        <result property="bsOrderbooksid" column="bs_orderbooksId" jdbcType="INTEGER"/>
+        <result property="bsOrderid" column="bs_orderId" jdbcType="INTEGER"/>
+        <result property="bsGoodsid" column="bs_goodsId" jdbcType="INTEGER"/>
+        <result property="bsGoodsnum" column="bs_goodsNum" jdbcType="INTEGER"/>
+        <result property="bsGoodsprice" column="bs_goodsPrice" jdbcType="OTHER"/>
+        <result property="bsGoodsname" column="bs_goodsName" jdbcType="VARCHAR"/>
+        <result property="bsGoodimg" column="bs_goodImg" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BsOrderbooksMap">
+        select
+          bs_orderbooksId, bs_orderId, bs_goodsId, bs_goodsNum, bs_goodsPrice, bs_goodsName, bs_goodImg
+        from books_shop.bs_orderbooks
+        where bs_orderbooksId = #{bsOrderbooksid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BsOrderbooksMap">
+        select
+          bs_orderbooksId, bs_orderId, bs_goodsId, bs_goodsNum, bs_goodsPrice, bs_goodsName, bs_goodImg
+        from books_shop.bs_orderbooks
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BsOrderbooksMap">
+        select
+          bs_orderbooksId, bs_orderId, bs_goodsId, bs_goodsNum, bs_goodsPrice, bs_goodsName, bs_goodImg
+        from books_shop.bs_orderbooks
+        <where>
+            <if test="bsOrderbooksid != null">
+                and bs_orderbooksId = #{bsOrderbooksid}
+            </if>
+            <if test="bsOrderid != null">
+                and bs_orderId = #{bsOrderid}
+            </if>
+            <if test="bsGoodsid != null">
+                and bs_goodsId = #{bsGoodsid}
+            </if>
+            <if test="bsGoodsnum != null">
+                and bs_goodsNum = #{bsGoodsnum}
+            </if>
+            <if test="bsGoodsprice != null">
+                and bs_goodsPrice = #{bsGoodsprice}
+            </if>
+            <if test="bsGoodsname != null and bsGoodsname != ''">
+                and bs_goodsName = #{bsGoodsname}
+            </if>
+            <if test="bsGoodimg != null and bsGoodimg != ''">
+                and bs_goodImg = #{bsGoodimg}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="bsOrderbooksid" useGeneratedKeys="true">
+        insert into books_shop.bs_orderbooks(bs_orderId, bs_goodsId, bs_goodsNum, bs_goodsPrice, bs_goodsName, bs_goodImg)
+        values (#{bsOrderid}, #{bsGoodsid}, #{bsGoodsnum}, #{bsGoodsprice}, #{bsGoodsname}, #{bsGoodimg})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update books_shop.bs_orderbooks
+        <set>
+            <if test="bsOrderid != null">
+                bs_orderId = #{bsOrderid},
+            </if>
+            <if test="bsGoodsid != null">
+                bs_goodsId = #{bsGoodsid},
+            </if>
+            <if test="bsGoodsnum != null">
+                bs_goodsNum = #{bsGoodsnum},
+            </if>
+            <if test="bsGoodsprice != null">
+                bs_goodsPrice = #{bsGoodsprice},
+            </if>
+            <if test="bsGoodsname != null and bsGoodsname != ''">
+                bs_goodsName = #{bsGoodsname},
+            </if>
+            <if test="bsGoodimg != null and bsGoodimg != ''">
+                bs_goodImg = #{bsGoodimg},
+            </if>
+        </set>
+        where bs_orderbooksId = #{bsOrderbooksid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from books_shop.bs_orderbooks where bs_orderbooksId = #{bsOrderbooksid}
+    </delete>
+
+</mapper>

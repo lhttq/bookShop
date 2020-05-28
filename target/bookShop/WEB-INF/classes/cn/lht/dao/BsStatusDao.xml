@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lht.dao.BsStatusDao">
+
+    <resultMap type="cn.lht.entity.BsStatus" id="BsStatusMap">
+        <result property="bsUserid" column="bs_userId" jdbcType="INTEGER"/>
+        <result property="bsLoginname" column="bs_loginName" jdbcType="VARCHAR"/>
+        <result property="bsLastip" column="bs_lastIP" jdbcType="VARCHAR"/>
+        <result property="bsLasttime" column="bs_lastTime" jdbcType="OTHER"/>
+        <result property="bsUserstatus" column="bs_userStatus" jdbcType="OTHER"/>
+        <result property="bsDataflag" column="bs_dataFlag" jdbcType="OTHER"/>
+        <result property="bsCreatetime" column="bs_createTime" jdbcType="OTHER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BsStatusMap">
+        select
+          bs_userId, bs_loginName, bs_lastIP, bs_lastTime, bs_userStatus, bs_dataFlag, bs_createTime
+        from books_shop.bs_status
+        where bs_userId = #{bsUserid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BsStatusMap">
+        select
+          bs_userId, bs_loginName, bs_lastIP, bs_lastTime, bs_userStatus, bs_dataFlag, bs_createTime
+        from books_shop.bs_status
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BsStatusMap">
+        select
+          bs_userId, bs_loginName, bs_lastIP, bs_lastTime, bs_userStatus, bs_dataFlag, bs_createTime
+        from books_shop.bs_status
+        <where>
+            <if test="bsUserid != null">
+                and bs_userId = #{bsUserid}
+            </if>
+            <if test="bsLoginname != null and bsLoginname != ''">
+                and bs_loginName = #{bsLoginname}
+            </if>
+            <if test="bsLastip != null and bsLastip != ''">
+                and bs_lastIP = #{bsLastip}
+            </if>
+            <if test="bsLasttime != null">
+                and bs_lastTime = #{bsLasttime}
+            </if>
+            <if test="bsUserstatus != null">
+                and bs_userStatus = #{bsUserstatus}
+            </if>
+            <if test="bsDataflag != null">
+                and bs_dataFlag = #{bsDataflag}
+            </if>
+            <if test="bsCreatetime != null">
+                and bs_createTime = #{bsCreatetime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="bsUserid" useGeneratedKeys="true">
+        insert into books_shop.bs_status(bs_lastIP, bs_lastTime, bs_userStatus, bs_dataFlag, bs_createTime)
+        values (#{bsLastip}, #{bsLasttime}, #{bsUserstatus}, #{bsDataflag}, #{bsCreatetime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update books_shop.bs_status
+        <set>
+            <if test="bsLastip != null and bsLastip != ''">
+                bs_lastIP = #{bsLastip},
+            </if>
+            <if test="bsLasttime != null">
+                bs_lastTime = #{bsLasttime},
+            </if>
+            <if test="bsUserstatus != null">
+                bs_userStatus = #{bsUserstatus},
+            </if>
+            <if test="bsDataflag != null">
+                bs_dataFlag = #{bsDataflag},
+            </if>
+            <if test="bsCreatetime != null">
+                bs_createTime = #{bsCreatetime},
+            </if>
+        </set>
+        where bs_userId = #{bsUserid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from books_shop.bs_status where bs_userId = #{bsUserid}
+    </delete>
+
+</mapper>

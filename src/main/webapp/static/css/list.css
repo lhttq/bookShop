@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    position: relative;
+    background: rgb(244, 246, 250);
+    height: 100%;
+    width: 100%;
+    min-width: 1000px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-position: center 0;
+}
+.body{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background:rgba(255,255,255,0.5);
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+.header{
+    position: relative;
+    width: 100%;
+    height: 7.5%;
+}
+.search{
+    position: absolute;
+    width: 500px;
+    top: 5px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+#nav{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+#nav #my{
+    position: absolute;
+    right: 10px;
+    margin: auto;
+}
+.search input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+.context{
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 80%;
+    height: 75%;
+}
+.cards{
+    position: relative;
+    height: 440px;
+    width: inherit;
+}
+.cards>ul>li{
+    list-style: none;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+}
+.card {
+    background: rgba(255,255,255,0.6);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 180px;
+}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.card img {
+    width: 20%;
+    height: 37%;
+    border-radius: 5px 5px 0 0;
+}
+h4{
+    margin: 5px;
+}
+#price{
+    color: red;
+}
+button{
+    margin: 3px;
+}
+.container {
+    padding: 2px 16px;
+}

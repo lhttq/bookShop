@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ <configuration>
+ <properties resource="database.properties"/>
+<!-- <settings>-->
+<!-- 	<setting name="logImpl" value="LOG4J"/>-->
+<!-- </settings>-->
+ <typeAliases>
+ 	<package name="cn.lht.entity"/>
+ </typeAliases>
+	<!--配置文件-->
+	 <environments default="test1">
+		 <!--配置mysql的环境-->
+		 <environment id="test1">
+		 	<transactionManager type="JDBC"/>
+			 <!--配置数据源（连接池）-->
+		 	<!-- 数据访问方式POOLED -->
+		 	<dataSource type="POOLED">
+				<!-- 配置连接数据库的4个基本信息 -->
+		 	<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+		 	<property name="url" value="${jdbc.jdbcUrl}"/>
+		 	<property name="username" value="${jdbc.user}"/>
+		 	<property name="password" value="${jdbc.password}"/>
+		 	</dataSource>
+		 </environment>
+	 </environments>
+<!--	引入映射配置文件-->
+	 <mappers>
+		 <package name="cn.lht.dao"></package>
+	 </mappers>
+
+ </configuration>

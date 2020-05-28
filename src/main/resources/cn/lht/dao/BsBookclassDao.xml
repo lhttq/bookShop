@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lht.dao.BsBookclassDao">
+
+    <resultMap type="cn.lht.entity.BsBookclass" id="BsBookclassMap">
+        <result property="bsBookclassid" column="bs_bookClassId" jdbcType="OTHER"/>
+        <result property="bsBookclassname" column="bs_bookClassName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BsBookclassMap">
+        select
+          bs_bookClassId, bs_bookClassName
+        from books_shop.bs_bookclass
+        where bs_bookClassId = #{bsBookclassid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BsBookclassMap">
+        select
+          bs_bookClassId, bs_bookClassName
+        from books_shop.bs_bookclass
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BsBookclassMap">
+        select
+          bs_bookClassId, bs_bookClassName
+        from books_shop.bs_bookclass
+        <where>
+            <if test="bsBookclassid != null">
+                and bs_bookClassId = #{bsBookclassid}
+            </if>
+            <if test="bsBookclassname != null and bsBookclassname != ''">
+                and bs_bookClassName = #{bsBookclassname}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="bsBookclassid" useGeneratedKeys="true">
+        insert into books_shop.bs_bookclass(bs_bookClassName)
+        values (#{bsBookclassname})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update books_shop.bs_bookclass
+        <set>
+            <if test="bsBookclassname != null and bsBookclassname != ''">
+                bs_bookClassName = #{bsBookclassname},
+            </if>
+        </set>
+        where bs_bookClassId = #{bsBookclassid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from books_shop.bs_bookclass where bs_bookClassId = #{bsBookclassid}
+    </delete>
+
+</mapper>

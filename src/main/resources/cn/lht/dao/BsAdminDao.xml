@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lht.dao.BsAdminDao">
+
+    <resultMap type="cn.lht.entity.BsAdmin" id="BsAdminMap">
+        <result property="bsAdminid" column="bs_adminId" jdbcType="INTEGER"/>
+        <result property="bsAdminlogin" column="bs_adminLogin" jdbcType="VARCHAR"/>
+        <result property="bsAdminpass" column="bs_adminPass" jdbcType="VARCHAR"/>
+        <result property="bsAdminnum" column="bs_adminNum" jdbcType="VARCHAR"/>
+        <result property="bsCreatetime" column="bs_createTime" jdbcType="TIMESTAMP"/>
+        <result property="bsLatelogintime" column="bs_lateLoginTime" jdbcType="TIMESTAMP"/>
+        <result property="bsLatelateip" column="bs_lateLateIP" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BsAdminMap">
+        select
+          bs_adminId, bs_adminLogin, bs_adminPass, bs_adminNum, bs_createTime, bs_lateLoginTime, bs_lateLateIP
+        from books_shop.bs_admin
+        where bs_adminId = #{bsAdminid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BsAdminMap">
+        select
+          bs_adminId, bs_adminLogin, bs_adminPass, bs_adminNum, bs_createTime, bs_lateLoginTime, bs_lateLateIP
+        from books_shop.bs_admin
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BsAdminMap">
+        select
+          bs_adminId, bs_adminLogin, bs_adminPass, bs_adminNum, bs_createTime, bs_lateLoginTime, bs_lateLateIP
+        from books_shop.bs_admin
+        <where>
+            <if test="bsAdminid != null">
+                and bs_adminId = #{bsAdminid}
+            </if>
+            <if test="bsAdminlogin != null and bsAdminlogin != ''">
+                and bs_adminLogin = #{bsAdminlogin}
+            </if>
+            <if test="bsAdminpass != null and bsAdminpass != ''">
+                and bs_adminPass = #{bsAdminpass}
+            </if>
+            <if test="bsAdminnum != null and bsAdminnum != ''">
+                and bs_adminNum = #{bsAdminnum}
+            </if>
+            <if test="bsCreatetime != null">
+                and bs_createTime = #{bsCreatetime}
+            </if>
+            <if test="bsLatelogintime != null">
+                and bs_lateLoginTime = #{bsLatelogintime}
+            </if>
+            <if test="bsLatelateip != null and bsLatelateip != ''">
+                and bs_lateLateIP = #{bsLatelateip}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="bsAdminid" useGeneratedKeys="true">
+        insert into books_shop.bs_admin(bs_adminPass, bs_createTime, bs_lateLoginTime, bs_lateLateIP)
+        values (#{bsAdminpass}, #{bsCreatetime}, #{bsLatelogintime}, #{bsLatelateip})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update books_shop.bs_admin
+        <set>
+            <if test="bsAdminpass != null and bsAdminpass != ''">
+                bs_adminPass = #{bsAdminpass},
+            </if>
+            <if test="bsCreatetime != null">
+                bs_createTime = #{bsCreatetime},
+            </if>
+            <if test="bsLatelogintime != null">
+                bs_lateLoginTime = #{bsLatelogintime},
+            </if>
+            <if test="bsLatelateip != null and bsLatelateip != ''">
+                bs_lateLateIP = #{bsLatelateip},
+            </if>
+        </set>
+        where bs_adminId = #{bsAdminid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from books_shop.bs_admin where bs_adminId = #{bsAdminid}
+    </delete>
+
+</mapper>

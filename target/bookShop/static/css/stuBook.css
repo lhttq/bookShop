@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+#image{
+    width: 92px;
+    height: 92px;
+    margin: 10px;
+    border: 0.5px solid black;
+}
+
+.layui-form{
+    position: absolute;
+    width: 40%;
+    height: 60%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}

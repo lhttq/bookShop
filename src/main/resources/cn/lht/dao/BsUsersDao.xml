@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lht.dao.BsUsersDao">
+
+    <resultMap type="cn.lht.entity.BsUsers" id="BsUsersMap">
+        <result property="bsUserid" column="bs_userId" jdbcType="INTEGER"/>
+        <result property="bsLoginname" column="bs_loginName" jdbcType="VARCHAR"/>
+        <result property="bsLoginsecret" column="bs_loginSecret" jdbcType="INTEGER"/>
+        <result property="bsUsertype" column="bs_userType" jdbcType="INTEGER"/>
+        <result property="bsUsersex" column="bs_userSex" jdbcType="INTEGER"/>
+        <result property="bsUsername" column="bs_userName" jdbcType="VARCHAR"/>
+        <result property="bsTruename" column="bs_trueName" jdbcType="VARCHAR"/>
+        <result property="bsUserbrithday" column="bs_userbrithday" jdbcType="TIMESTAMP"/>
+        <result property="bsUserphoto" column="bs_userPhoto" jdbcType="VARCHAR"/>
+        <result property="bsUserqq" column="bs_userQQ" jdbcType="VARCHAR"/>
+        <result property="bsUserphone" column="bs_userPhone" jdbcType="VARCHAR"/>
+        <result property="bsUseremail" column="bs_userEmail" jdbcType="VARCHAR"/>
+        <result property="bsProvince" column="bs_province" jdbcType="VARCHAR"/>
+        <result property="bsUniversity" column="bs_university" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BsUsersMap">
+        select
+          bs_userId, bs_loginName, bs_loginSecret, bs_userType, bs_userSex, bs_userName, bs_trueName, bs_userbrithday, bs_userPhoto, bs_userQQ, bs_userPhone, bs_userEmail, bs_province, bs_university
+        from books_shop.bs_users
+        where bs_userId = #{bsUserid}
+    </select>
+    <select id="queryByuserLoginName" resultMap="BsUsersMap">
+         select
+          bs_userId, bs_loginName, bs_loginSecret, bs_userType, bs_userSex, bs_userName, bs_trueName, bs_userbrithday, bs_userPhoto, bs_userQQ, bs_userPhone, bs_userEmail, bs_province, bs_university
+        from books_shop.bs_users
+        where bs_loginName = #{bsLoginname}
+    </select>
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BsUsersMap">
+        select
+          bs_userId, bs_loginName, bs_loginSecret, bs_userType, bs_userSex, bs_userName, bs_trueName, bs_userbrithday, bs_userPhoto, bs_userQQ, bs_userPhone, bs_userEmail, bs_province, bs_university
+        from books_shop.bs_users
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BsUsersMap">
+        select
+          bs_userId, bs_loginName, bs_loginSecret, bs_userType, bs_userSex, bs_userName, bs_trueName, bs_userbrithday, bs_userPhoto, bs_userQQ, bs_userPhone, bs_userEmail, bs_province, bs_university
+        from books_shop.bs_users
+        <where>
+            <if test="bsUserid != null">
+                and bs_userId = #{bsUserid}
+            </if>
+            <if test="bsLoginname != null and bsLoginname != ''">
+                and bs_loginName = #{bsLoginname}
+            </if>
+            <if test="bsLoginsecret != null">
+                and bs_loginSecret = #{bsLoginsecret}
+            </if>
+            <if test="bsUsertype != null">
+                and bs_userType = #{bsUsertype}
+            </if>
+            <if test="bsUsersex != null">
+                and bs_userSex = #{bsUsersex}
+            </if>
+            <if test="bsUsername != null and bsUsername != ''">
+                and bs_userName = #{bsUsername}
+            </if>
+            <if test="bsTruename != null and bsTruename != ''">
+                and bs_trueName = #{bsTruename}
+            </if>
+            <if test="bsUserbrithday != null">
+                and bs_userbrithday = #{bsUserbrithday}
+            </if>
+            <if test="bsUserphoto != null and bsUserphoto != ''">
+                and bs_userPhoto = #{bsUserphoto}
+            </if>
+            <if test="bsUserqq != null and bsUserqq != ''">
+                and bs_userQQ = #{bsUserqq}
+            </if>
+            <if test="bsUserphone != null and bsUserphone != ''">
+                and bs_userPhone = #{bsUserphone}
+            </if>
+            <if test="bsUseremail != null and bsUseremail != ''">
+                and bs_userEmail = #{bsUseremail}
+            </if>
+            <if test="bsProvince != null and bsProvince != ''">
+                and bs_province = #{bsProvince}
+            </if>
+            <if test="bsUniversity != null and bsUniversity != ''">
+                and bs_university = #{bsUniversity}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="bsUserid" useGeneratedKeys="true">
+        insert into books_shop.bs_users(bs_loginName, bs_loginSecret, bs_userType, bs_userSex, bs_userName, bs_trueName, bs_userbrithday, bs_userPhoto, bs_userQQ, bs_userPhone, bs_userEmail, bs_province, bs_university)
+        values (#{bsLoginname}, #{bsLoginsecret}, #{bsUsertype}, #{bsUsersex}, #{bsUsername}, #{bsTruename}, #{bsUserbrithday}, #{bsUserphoto}, #{bsUserqq}, #{bsUserphone}, #{bsUseremail}, #{bsProvince}, #{bsUniversity})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update books_shop.bs_users
+        <set>
+            <if test="bsLoginname != null and bsLoginname != ''">
+                bs_loginName = #{bsLoginname},
+            </if>
+            <if test="bsLoginsecret != null">
+                bs_loginSecret = #{bsLoginsecret},
+            </if>
+            <if test="bsUsertype != null">
+                bs_userType = #{bsUsertype},
+            </if>
+            <if test="bsUsersex != null">
+                bs_userSex = #{bsUsersex},
+            </if>
+            <if test="bsUsername != null and bsUsername != ''">
+                bs_userName = #{bsUsername},
+            </if>
+            <if test="bsTruename != null and bsTruename != ''">
+                bs_trueName = #{bsTruename},
+            </if>
+            <if test="bsUserbrithday != null">
+                bs_userbrithday = #{bsUserbrithday},
+            </if>
+            <if test="bsUserphoto != null and bsUserphoto != ''">
+                bs_userPhoto = #{bsUserphoto},
+            </if>
+            <if test="bsUserqq != null and bsUserqq != ''">
+                bs_userQQ = #{bsUserqq},
+            </if>
+            <if test="bsUserphone != null and bsUserphone != ''">
+                bs_userPhone = #{bsUserphone},
+            </if>
+            <if test="bsUseremail != null and bsUseremail != ''">
+                bs_userEmail = #{bsUseremail},
+            </if>
+            <if test="bsProvince != null and bsProvince != ''">
+                bs_province = #{bsProvince},
+            </if>
+            <if test="bsUniversity != null and bsUniversity != ''">
+                bs_university = #{bsUniversity},
+            </if>
+        </set>
+        where bs_userId = #{bsUserid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from books_shop.bs_users where bs_userId = #{bsUserid}
+    </delete>
+
+</mapper>

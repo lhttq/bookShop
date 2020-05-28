@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lht.dao.BsPublishbooksDao">
+
+    <resultMap type="cn.lht.entity.BsPublishbooks" id="BsPublishbooksMap">
+        <result property="bsBooksid" column="bs_booksId" jdbcType="INTEGER"/>
+        <result property="bsLoginname" column="bs_loginName" jdbcType="VARCHAR"/>
+        <result property="bsBookname" column="bs_bookName" jdbcType="VARCHAR"/>
+        <result property="bsBookauthor" column="bs_bookAuthor" jdbcType="VARCHAR"/>
+        <result property="bsPressname" column="bs_pressName" jdbcType="VARCHAR"/>
+        <result property="bsBookprice" column="bs_bookPrice" jdbcType="NUMERIC"/>
+        <result property="bsBookcover" column="bs_bookCover" jdbcType="VARCHAR"/>
+        <result property="bsBooknum" column="bs_bookNum" jdbcType="INTEGER"/>
+        <result property="bsProvince" column="bs_province" jdbcType="VARCHAR"/>
+        <result property="bsCratetime" column="bs_crateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BsPublishbooksMap">
+        select
+          bs_booksId, bs_loginName, bs_bookName, bs_bookAuthor, bs_pressName, bs_bookPrice, bs_bookCover, bs_bookNum, bs_province, bs_crateTime
+        from books_shop.bs_publishbooks
+        where bs_booksId = #{bsBooksid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BsPublishbooksMap">
+        select
+          bs_booksId, bs_loginName, bs_bookName, bs_bookAuthor, bs_pressName, bs_bookPrice, bs_bookCover, bs_bookNum, bs_province, bs_crateTime
+        from books_shop.bs_publishbooks
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BsPublishbooksMap">
+        select
+          bs_booksId, bs_loginName, bs_bookName, bs_bookAuthor, bs_pressName, bs_bookPrice, bs_bookCover, bs_bookNum, bs_province, bs_crateTime
+        from books_shop.bs_publishbooks
+        <where>
+            <if test="bsBooksid != null">
+                and bs_booksId = #{bsBooksid}
+            </if>
+            <if test="bsLoginname != null and bsLoginname != ''">
+                and bs_loginName = #{bsLoginname}
+            </if>
+            <if test="bsBookname != null and bsBookname != ''">
+                and bs_bookName = #{bsBookname}
+            </if>
+            <if test="bsBookauthor != null and bsBookauthor != ''">
+                and bs_bookAuthor = #{bsBookauthor}
+            </if>
+            <if test="bsPressname != null and bsPressname != ''">
+                and bs_pressName = #{bsPressname}
+            </if>
+            <if test="bsBookprice != null">
+                and bs_bookPrice = #{bsBookprice}
+            </if>
+            <if test="bsBookcover != null and bsBookcover != ''">
+                and bs_bookCover = #{bsBookcover}
+            </if>
+            <if test="bsBooknum != null">
+                and bs_bookNum = #{bsBooknum}
+            </if>
+            <if test="bsProvince != null and bsProvince != ''">
+                and bs_province = #{bsProvince}
+            </if>
+            <if test="bsCratetime != null">
+                and bs_crateTime = #{bsCratetime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="bsBooksid" useGeneratedKeys="true">
+        insert into books_shop.bs_publishbooks(bs_loginName, bs_bookName, bs_bookAuthor, bs_pressName, bs_bookPrice, bs_bookCover, bs_bookNum, bs_province, bs_crateTime)
+        values (#{bsLoginname}, #{bsBookname}, #{bsBookauthor}, #{bsPressname}, #{bsBookprice}, #{bsBookcover}, #{bsBooknum}, #{bsProvince}, #{bsCratetime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update books_shop.bs_publishbooks
+        <set>
+            <if test="bsLoginname != null and bsLoginname != ''">
+                bs_loginName = #{bsLoginname},
+            </if>
+            <if test="bsBookname != null and bsBookname != ''">
+                bs_bookName = #{bsBookname},
+            </if>
+            <if test="bsBookauthor != null and bsBookauthor != ''">
+                bs_bookAuthor = #{bsBookauthor},
+            </if>
+            <if test="bsPressname != null and bsPressname != ''">
+                bs_pressName = #{bsPressname},
+            </if>
+            <if test="bsBookprice != null">
+                bs_bookPrice = #{bsBookprice},
+            </if>
+            <if test="bsBookcover != null and bsBookcover != ''">
+                bs_bookCover = #{bsBookcover},
+            </if>
+            <if test="bsBooknum != null">
+                bs_bookNum = #{bsBooknum},
+            </if>
+            <if test="bsProvince != null and bsProvince != ''">
+                bs_province = #{bsProvince},
+            </if>
+            <if test="bsCratetime != null">
+                bs_crateTime = #{bsCratetime},
+            </if>
+        </set>
+        where bs_booksId = #{bsBooksid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from books_shop.bs_publishbooks where bs_booksId = #{bsBooksid}
+    </delete>
+
+</mapper>

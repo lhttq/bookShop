@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lht.dao.BsRejectreasonDao">
+
+    <resultMap type="cn.lht.entity.BsRejectreason" id="BsRejectreasonMap">
+        <result property="bsRejectreasonid" column="bs_rejectReasonId" jdbcType="INTEGER"/>
+        <result property="bsLoginname" column="bs_loginName" jdbcType="VARCHAR"/>
+        <result property="bsRejectreason" column="bs_rejectReason" jdbcType="VARCHAR"/>
+        <result property="bsCreatetime" column="bs_createTime" jdbcType="OTHER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BsRejectreasonMap">
+        select
+          bs_rejectReasonId, bs_loginName, bs_rejectReason, bs_createTime
+        from books_shop.bs_rejectreason
+        where bs_rejectReasonId = #{bsRejectreasonid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BsRejectreasonMap">
+        select
+          bs_rejectReasonId, bs_loginName, bs_rejectReason, bs_createTime
+        from books_shop.bs_rejectreason
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BsRejectreasonMap">
+        select
+          bs_rejectReasonId, bs_loginName, bs_rejectReason, bs_createTime
+        from books_shop.bs_rejectreason
+        <where>
+            <if test="bsRejectreasonid != null">
+                and bs_rejectReasonId = #{bsRejectreasonid}
+            </if>
+            <if test="bsLoginname != null and bsLoginname != ''">
+                and bs_loginName = #{bsLoginname}
+            </if>
+            <if test="bsRejectreason != null and bsRejectreason != ''">
+                and bs_rejectReason = #{bsRejectreason}
+            </if>
+            <if test="bsCreatetime != null">
+                and bs_createTime = #{bsCreatetime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="bsRejectreasonid" useGeneratedKeys="true">
+        insert into books_shop.bs_rejectreason(bs_rejectReason, bs_createTime)
+        values (#{bsRejectreason}, #{bsCreatetime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update books_shop.bs_rejectreason
+        <set>
+            <if test="bsRejectreason != null and bsRejectreason != ''">
+                bs_rejectReason = #{bsRejectreason},
+            </if>
+            <if test="bsCreatetime != null">
+                bs_createTime = #{bsCreatetime},
+            </if>
+        </set>
+        where bs_rejectReasonId = #{bsRejectreasonid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from books_shop.bs_rejectreason where bs_rejectReasonId = #{bsRejectreasonid}
+    </delete>
+
+</mapper>

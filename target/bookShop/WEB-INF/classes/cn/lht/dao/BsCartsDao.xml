@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lht.dao.BsCartsDao">
+
+    <resultMap type="cn.lht.entity.BsCarts" id="BsCartsMap">
+        <result property="bsCartid" column="bs_cartId" jdbcType="INTEGER"/>
+        <result property="bsUserid" column="bs_userId" jdbcType="INTEGER"/>
+        <result property="bsIscheck" column="bs_isCheck" jdbcType="OTHER"/>
+        <result property="bsGoodsid" column="bs_goodsId" jdbcType="INTEGER"/>
+        <result property="bsGoodsspecld" column="bs_goodsSpecld" jdbcType="VARCHAR"/>
+        <result property="bsCartnum" column="bs_cartNum" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BsCartsMap">
+        select
+          bs_cartId, bs_userId, bs_isCheck, bs_goodsId, bs_goodsSpecld, bs_cartNum
+        from books_shop.bs_carts
+        where bs_cartId = #{bsCartid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BsCartsMap">
+        select
+          bs_cartId, bs_userId, bs_isCheck, bs_goodsId, bs_goodsSpecld, bs_cartNum
+        from books_shop.bs_carts
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BsCartsMap">
+        select
+          bs_cartId, bs_userId, bs_isCheck, bs_goodsId, bs_goodsSpecld, bs_cartNum
+        from books_shop.bs_carts
+        <where>
+            <if test="bsCartid != null">
+                and bs_cartId = #{bsCartid}
+            </if>
+            <if test="bsUserid != null">
+                and bs_userId = #{bsUserid}
+            </if>
+            <if test="bsIscheck != null">
+                and bs_isCheck = #{bsIscheck}
+            </if>
+            <if test="bsGoodsid != null">
+                and bs_goodsId = #{bsGoodsid}
+            </if>
+            <if test="bsGoodsspecld != null and bsGoodsspecld != ''">
+                and bs_goodsSpecld = #{bsGoodsspecld}
+            </if>
+            <if test="bsCartnum != null">
+                and bs_cartNum = #{bsCartnum}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="bsCartid" useGeneratedKeys="true">
+        insert into books_shop.bs_carts(bs_userId, bs_isCheck, bs_goodsId, bs_goodsSpecld, bs_cartNum)
+        values (#{bsUserid}, #{bsIscheck}, #{bsGoodsid}, #{bsGoodsspecld}, #{bsCartnum})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update books_shop.bs_carts
+        <set>
+            <if test="bsUserid != null">
+                bs_userId = #{bsUserid},
+            </if>
+            <if test="bsIscheck != null">
+                bs_isCheck = #{bsIscheck},
+            </if>
+            <if test="bsGoodsid != null">
+                bs_goodsId = #{bsGoodsid},
+            </if>
+            <if test="bsGoodsspecld != null and bsGoodsspecld != ''">
+                bs_goodsSpecld = #{bsGoodsspecld},
+            </if>
+            <if test="bsCartnum != null">
+                bs_cartNum = #{bsCartnum},
+            </if>
+        </set>
+        where bs_userId = #{bsUserid} and bs_goodsId = #{bsGoodsid}
+    </update>
+    <update id="updateIs">
+        update books_shop.bs_carts
+        <set>
+            <if test="bsUserid != null">
+                bs_userId = #{bsUserid},
+            </if>
+            <if test="bsIscheck != null">
+                bs_isCheck = #{bsIscheck},
+            </if>
+            <if test="bsGoodsid != null">
+                bs_goodsId = #{bsGoodsid},
+            </if>
+            <if test="bsGoodsspecld != null and bsGoodsspecld != ''">
+                bs_goodsSpecld = #{bsGoodsspecld},
+            </if>
+            <if test="bsCartnum != null">
+                bs_cartNum = #{bsCartnum},
+            </if>
+        </set>
+        where bs_userId = #{bsUserid} and bs_goodsId = #{bsGoodsid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteByUseridAndBookid">
+        delete from books_shop.bs_carts where bs_userId = #{bsUserid} and bs_goodsId = #{bsGoodsid}
+    </delete>
+
+</mapper>

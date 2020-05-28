@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lht.dao.BsCancelreasonDao">
+
+    <resultMap type="cn.lht.entity.BsCancelreason" id="BsCancelreasonMap">
+        <result property="bsCancelreasonid" column="bs_cancelReasonId" jdbcType="INTEGER"/>
+        <result property="bsUserlogin" column="bs_userLogin" jdbcType="VARCHAR"/>
+        <result property="bsCancelreason" column="bs_cancelReason" jdbcType="VARCHAR"/>
+        <result property="bsCreatetime" column="bs_createTime" jdbcType="OTHER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BsCancelreasonMap">
+        select
+          bs_cancelReasonId, bs_userLogin, bs_cancelReason, bs_createTime
+        from books_shop.bs_cancelreason
+        where bs_cancelReasonId = #{bsCancelreasonid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BsCancelreasonMap">
+        select
+          bs_cancelReasonId, bs_userLogin, bs_cancelReason, bs_createTime
+        from books_shop.bs_cancelreason
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BsCancelreasonMap">
+        select
+          bs_cancelReasonId, bs_userLogin, bs_cancelReason, bs_createTime
+        from books_shop.bs_cancelreason
+        <where>
+            <if test="bsCancelreasonid != null">
+                and bs_cancelReasonId = #{bsCancelreasonid}
+            </if>
+            <if test="bsUserlogin != null and bsUserlogin != ''">
+                and bs_userLogin = #{bsUserlogin}
+            </if>
+            <if test="bsCancelreason != null and bsCancelreason != ''">
+                and bs_cancelReason = #{bsCancelreason}
+            </if>
+            <if test="bsCreatetime != null">
+                and bs_createTime = #{bsCreatetime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="bsCancelreasonid" useGeneratedKeys="true">
+        insert into books_shop.bs_cancelreason(bs_cancelReason, bs_createTime)
+        values (#{bsCancelreason}, #{bsCreatetime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update books_shop.bs_cancelreason
+        <set>
+            <if test="bsCancelreason != null and bsCancelreason != ''">
+                bs_cancelReason = #{bsCancelreason},
+            </if>
+            <if test="bsCreatetime != null">
+                bs_createTime = #{bsCreatetime},
+            </if>
+        </set>
+        where bs_cancelReasonId = #{bsCancelreasonid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from books_shop.bs_cancelreason where bs_cancelReasonId = #{bsCancelreasonid}
+    </delete>
+
+</mapper>
