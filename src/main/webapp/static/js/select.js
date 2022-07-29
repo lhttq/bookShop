@@ -43,7 +43,7 @@ $(function () {
                     //用ajax向高德地图的服务器发送请求
                 $.ajax({
                     type: "GET",
-                    url: "https://restapi.amap.com/v3/assistant/inputtips?key=d4c940ccfa2aed4152a4885de4c5387a",
+                    url: "https://restapi.amap.com/v3/assistant/inputtips?key=d4c940cc*********a4885de4c5387a", // 请自行申请高度地图key
                     cache: false,
                     async: false,
                     data: {
